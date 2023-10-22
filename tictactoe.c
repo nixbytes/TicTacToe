@@ -4,7 +4,7 @@
 
 int main(){
 
-puts("Hello C");
+    puts("Hello C");
 
-return 0;
+    return 0;
 }
