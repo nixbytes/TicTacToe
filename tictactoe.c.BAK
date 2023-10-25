@@ -1,0 +1,13 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <time.h>
+
+void resetBoard();
+
+int main(){
+
+	puts("Hello C");
+
+	return 0;
+}
