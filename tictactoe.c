@@ -29,6 +29,15 @@ int main() {
     printBoard();
 
     playerMove();
+    winner = checkWinner();
+    if (winner != ' ' && checkFreeSpace() == 0) {
+      break;
+    }
+    computerMove();
+    winner = checkWinner();
+    if (winner != ' ' && checkFreeSpace() == 0) {
+      break;
+    }
   }
   return 0;
 }
@@ -82,9 +91,46 @@ void playerMove() {
     } else {
 
       board[x][y] = PLAYER;
+      break
     }
   } while (board[x][y] != ' ');
 }
-void compuerMove() {}
-char checkWinner() {}
+void compuerMove() {
+
+  srand(time(0));
+
+  int x;
+  int y;
+
+  if (checkFreeSpace() > 0) {
+    do {
+
+      x = rand() % 3;
+      y = rand() % 3;
+    } while (board[x][y] != ' ');
+    board[x][y] = COMPUTER;
+  }
+}
+char checkWinner() {
+
+  for (int i = 0; i < 3; i++) {
+    if (board[i][0] == board[i][1] && board[i][0] == board[i][2]) {
+      return board[i][0];
+    }
+  }
+  for (int i = 0; i < 3; i++) {
+    if (board[0][i] == board[1][i] && board[0][i] == board[2][i]) {
+      return board[0][i];
+    }
+  }
+
+  if (board[0][0] == board[1][1] && board[0][0] == board[2][2]) {
+    return board[0][0];
+  }
+  if (board[0][2] == board[1][1] && board[0][0] == board[2][0]) {
+    return board[0][0];
+  }
+
+  return ' ';
+}
 void printWinner(char winner) {}
