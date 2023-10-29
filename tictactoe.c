@@ -68,12 +68,22 @@ void playerMove() {
   int x;
   int y;
 
-  printf("Enter row #(1-3): ");
-  scanf("%d", &x);
-  x--;
-  printf("Enter Column #(1-3): ");
-  scanf("%d", &y);
-  y--;
+  do {
+    printf("Enter row #(1-3): ");
+    scanf("%d", &x);
+    x--;
+    printf("Enter Column #(1-3): ");
+    scanf("%d", &y);
+    y--;
+
+    if (board[x][y] != ' ') {
+      printf("Invalid move\n");
+
+    } else {
+
+      board[x][y] = PLAYER;
+    }
+  } while (board[x][y] != ' ');
 }
 void compuerMove() {}
 char checkWinner() {}
