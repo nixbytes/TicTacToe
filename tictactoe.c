@@ -15,7 +15,7 @@ void resetBoard();
 void printBoard();
 int checkFreeSpace();
 void playerMove();
-void compuerMove();
+void computerMove();
 char checkWinner();
 void printWinner(char);
 
@@ -24,7 +24,7 @@ int main() {
 
   resetBoard();
 
-  while (winner == ' ' && checkFreeSpace != 0) {
+  while (winner == ' ' && checkFreeSpace() != 0) {
 
     printBoard();
 
@@ -93,11 +93,11 @@ void playerMove() {
     } else {
 
       board[x][y] = PLAYER;
-      break
+      break;
     }
   } while (board[x][y] != ' ');
 }
-void compuerMove() {
+void computerMove() {
 
   srand(time(0));
 
@@ -111,8 +111,7 @@ void compuerMove() {
       y = rand() % 3;
     } while (board[x][y] != ' ');
     board[x][y] = COMPUTER;
-  }
-  else{
+  } else {
     printWinner(' ');
   }
 }
@@ -139,15 +138,13 @@ char checkWinner() {
   return ' ';
 }
 void printWinner(char winner) {
-    if(winner == PLAYER){
-        printf("you win!!! :0");
-    }else if(winner == COMPUTER){
-    
-        printf("you lose :(");
-    }else{
+  if (winner == PLAYER) {
+    printf("you win!!! :)");
+  } else if (winner == COMPUTER) {
 
-        printf("Tie :|");
-    }
+    printf("you lose :(");
+  } else {
 
-
+    printf("Tie :|");
+  }
 }
