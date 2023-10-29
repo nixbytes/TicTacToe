@@ -39,6 +39,8 @@ int main() {
       break;
     }
   }
+  printBoard();
+  printWinner(winner);
   return 0;
 }
 
@@ -110,6 +112,9 @@ void compuerMove() {
     } while (board[x][y] != ' ');
     board[x][y] = COMPUTER;
   }
+  else{
+    printWinner(' ');
+  }
 }
 char checkWinner() {
 
@@ -133,4 +138,16 @@ char checkWinner() {
 
   return ' ';
 }
-void printWinner(char winner) {}
+void printWinner(char winner) {
+    if(winner == PLAYER){
+        printf("you win!!! :0");
+    }else if(winner == COMPUTER){
+    
+        printf("you lose :(");
+    }else{
+
+        printf("Tie :|");
+    }
+
+
+}
