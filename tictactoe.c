@@ -4,9 +4,9 @@
 #include <time.h>
 
 // Define global Variables
-char board[3][3];      // 2D array to represent the tic-tac-toe board
-const char PLAYER = 'X';    // Symbol for the player
-const char COMPUTER = 'O';  // Symbol for the computer
+char board[3][3];          // 2D array to represent the tic-tac-toe board
+const char PLAYER = 'X';   // Symbol for the player
+const char COMPUTER = 'O'; // Symbol for the computer
 
 // Function prototypes (declaring functions before they are defined)
 void resetBoard();
@@ -18,25 +18,25 @@ char checkWinner();
 void printWinner(char);
 
 int main() {
-  char winner = ' ';  // Stores the winner of the game, initialized as a space
+  char winner = ' '; // Stores the winner of the game, initialized as a space
 
-  resetBoard();  // Initialize the game board with empty spaces
+  resetBoard(); // Initialize the game board with empty spaces
 
   // Main game loop: continues until there's a winner or the board is full
   while (winner == ' ' && checkFreeSpace() != 0) {
 
-    printBoard();  // Display the current state of the board
+    printBoard(); // Display the current state of the board
 
-    playerMove();  // Player's move
-    winner = checkWinner();  // Check if the player has won
+    playerMove();           // Player's move
+    winner = checkWinner(); // Check if the player has won
 
     // If the player won or there are no more free spaces, exit the loop
     if (winner != ' ' && checkFreeSpace() == 0) {
       break;
     }
 
-    computerMove();  // Computer's move
-    winner = checkWinner();  // Check if the computer has won
+    computerMove();         // Computer's move
+    winner = checkWinner(); // Check if the computer has won
 
     // If the computer won or there are no more free spaces, exit the loop
     if (winner != ' ' && checkFreeSpace() == 0) {
@@ -44,8 +44,8 @@ int main() {
     }
   }
 
-  printBoard();  // Display the final state of the board
-  printWinner(winner);  // Print the result of the game (win, lose, or tie)
+  printBoard();        // Display the final state of the board
+  printWinner(winner); // Print the result of the game (win, lose, or tie)
   return 0;
 }
 
@@ -60,12 +60,13 @@ void resetBoard() {
 
 // Function to print the current state of the board
 void printBoard() {
-  printf(" %c | %c | %c ", board[0][0], board[0][1], board[0][2]);
-  printf("\n---|---|---\n");
-  printf(" %c | %c | %c ", board[1][0], board[1][1], board[1][2]);
-  printf("\n---|---|---\n");
-  printf(" %c | %c | %c ", board[2][0], board[2][1], board[2][2]);
-  printf("\n---|---|---\n");
+  for (int i = 0; i < 3; i++) {
+    printf(" %c | %c | %c ", board[i][0], board[i][1], board[i][2]);
+    if (i < 2) {
+      printf("\n---|---|---\n");
+    }
+  }
+  printf("\n");
 }
 
 // Function to check the number of free spaces on the board
@@ -98,7 +99,7 @@ void playerMove() {
     if (board[x][y] != ' ') {
       printf("Invalid move\n");
     } else {
-      board[x][y] = PLAYER;  // Place the player's symbol on the board
+      board[x][y] = PLAYER; // Place the player's symbol on the board
       break;
     }
   } while (board[x][y] != ' ');
@@ -106,7 +107,7 @@ void playerMove() {
 
 // Function for the computer's move
 void computerMove() {
-  srand(time(0));  // Seed the random number generator with the current time
+  srand(time(0)); // Seed the random number generator with the current time
 
   int x;
   int y;
@@ -117,9 +118,9 @@ void computerMove() {
       x = rand() % 3;
       y = rand() % 3;
     } while (board[x][y] != ' ');
-    board[x][y] = COMPUTER;  // Place the computer's symbol on the board
+    board[x][y] = COMPUTER; // Place the computer's symbol on the board
   } else {
-    printWinner(' ');  // If there are no more free spaces, it's a tie
+    printWinner(' '); // If there are no more free spaces, it's a tie
   }
 }
 
@@ -131,7 +132,7 @@ char checkWinner() {
       return board[i][0];
     }
   }
-  
+
   // Check columns for a winner
   for (int i = 0; i < 3; i++) {
     if (board[0][i] == board[1][i] && board[0][i] == board[2][i]) {
@@ -147,7 +148,7 @@ char checkWinner() {
     return board[0][2];
   }
 
-  return ' ';  // If there is no winner, return a space
+  return ' '; // If there is no winner, return a space
 }
 
 // Function to print the result of the game
@@ -160,4 +161,3 @@ void printWinner(char winner) {
     printf("Tie :|\n");
   }
 }
-
