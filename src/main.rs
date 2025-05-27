@@ -41,7 +41,7 @@ fn main() {
         io::stdin()
             .read_line(&mut input)
             .expect("Failed to read line");
-        let pos: usize = match input.trim().parse() {
+        let pos: usize = match input.trim().parse::<usize>() {
             Ok(num) if num >= 1 && num <= 9 => num - 1,
             _ => {
                 println!("Invalid input. Try again.");
